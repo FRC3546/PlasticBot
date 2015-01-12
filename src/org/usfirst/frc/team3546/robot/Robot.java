@@ -2,9 +2,13 @@
 package org.usfirst.frc.team3546.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+
 import org.usfirst.frc.team3546.robot.commands.ExampleCommand;
 import org.usfirst.frc.team3546.robot.subsystems.ExampleSubsystem;
 
@@ -19,6 +23,9 @@ public class Robot extends IterativeRobot {
 
 	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 	public static OI oi;
+	public Victor frontLeft, frontRight, backLeft, backRight;
+	public RobotDrive mainDrive;
+	public Joystick leftJoystick, rightJoystick;
 
     Command autonomousCommand;
 
@@ -28,6 +35,14 @@ public class Robot extends IterativeRobot {
      */
     public void robotInit() {
 		oi = new OI();
+		frontLeft = new Victor(0);
+		frontRight = new Victor(1);
+		backLeft = new Victor(2);
+		backRight = new Victor(3);
+		mainDrive = new RobotDrive(frontLeft, backLeft, frontRight, backRight);
+		leftJoystick = new Joystick(0);
+		rightJoystick = new Joystick(1);
+		
         // instantiate the command used for the autonomous period
         autonomousCommand = new ExampleCommand();
     }
