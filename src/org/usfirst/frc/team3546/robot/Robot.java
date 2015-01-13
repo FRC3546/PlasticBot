@@ -9,8 +9,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
-import org.usfirst.frc.team3546.robot.commands.ExampleCommand;
-import org.usfirst.frc.team3546.robot.subsystems.ExampleSubsystem;
+import org.usfirst.frc.team3546.robot.subsystems.DriveBase;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -21,30 +20,19 @@ import org.usfirst.frc.team3546.robot.subsystems.ExampleSubsystem;
  */
 public class Robot extends IterativeRobot {
 
-	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 	public static OI oi;
-	public Victor frontLeft, frontRight, backLeft, backRight;
-	public RobotDrive mainDrive;
-	public Joystick leftJoystick, rightJoystick;
-
-    Command autonomousCommand;
-
+	public static Joystick leftJoystick, rightJoystick;
+	public static DriveBase driveTrain;
+	
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
      */
     public void robotInit() {
 		oi = new OI();
-		frontLeft = new Victor(0);
-		frontRight = new Victor(1);
-		backLeft = new Victor(2);
-		backRight = new Victor(3);
-		mainDrive = new RobotDrive(frontLeft, backLeft, frontRight, backRight);
+		driveTrain = new DriveBase();
 		leftJoystick = new Joystick(0);
 		rightJoystick = new Joystick(1);
-		
-        // instantiate the command used for the autonomous period
-        autonomousCommand = new ExampleCommand();
     }
 	
 	public void disabledPeriodic() {
@@ -52,8 +40,7 @@ public class Robot extends IterativeRobot {
 	}
 
     public void autonomousInit() {
-        // schedule the autonomous command (example)
-        if (autonomousCommand != null) autonomousCommand.start();
+    	
     }
 
     /**
@@ -68,7 +55,6 @@ public class Robot extends IterativeRobot {
         // teleop starts running. If you want the autonomous to 
         // continue until interrupted by another command, remove
         // this line or comment it out.
-        if (autonomousCommand != null) autonomousCommand.cancel();
     }
 
     /**
