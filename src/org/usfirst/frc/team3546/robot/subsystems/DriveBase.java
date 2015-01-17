@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3546.robot.subsystems;
 
+import org.usfirst.frc.team3546.robot.RobotMap;
 import org.usfirst.frc.team3546.robot.commands.MecanumDrive;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -23,10 +24,10 @@ public class DriveBase extends Subsystem {
         setDefaultCommand(new MecanumDrive());
         drivingOreintation = NORMALDRIVE;
         
-        frontLeft = new Talon(0);
-		frontRight = new Talon(1);
-		backLeft = new Talon(2);
-		backRight = new Talon(3);
+        frontLeft = new Talon(RobotMap.frontLeftMotor);
+		frontRight = new Talon(RobotMap.frontRightMotor);
+		backLeft = new Talon(RobotMap.backLeftMotor);
+		backRight = new Talon(RobotMap.backRightMotor);
 		mainDrive = new RobotDrive(frontLeft, backLeft, frontRight, backRight);
     }
     
@@ -48,10 +49,11 @@ public class DriveBase extends Subsystem {
     		verticalDriveInput = -1 * verticalDriveInput;
     	}
     	
-    	mainDrive.mecanumDrive_Polar(
+    	mainDrive.mecanumDrive_Cartesian(
     			horizontalDriveInput, 
-    			verticalDriveInput, 
-    			rotationalDriveInput
+    			rotationalDriveInput,
+    			verticalDriveInput,  
+    			0
     			);
     }
     
