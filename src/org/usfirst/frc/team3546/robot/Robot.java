@@ -2,10 +2,6 @@
 package org.usfirst.frc.team3546.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.RobotDrive;
-import edu.wpi.first.wpilibj.Victor;
-import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
@@ -16,12 +12,10 @@ import org.usfirst.frc.team3546.robot.subsystems.DriveBase;
  * functions corresponding to each mode, as described in the IterativeRobot
  * documentation. If you change the name of this class or the package after
  * creating this project, you must also update the manifest file in the resource
- * directory.
+ * directory. 
  */
 public class Robot extends IterativeRobot {
-
 	public static OI oi;
-	public static Joystick leftJoystick, rightJoystick;
 	public static DriveBase driveTrain;
 	
     /**
@@ -31,8 +25,6 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
 		oi = new OI();
 		driveTrain = new DriveBase();
-		leftJoystick = new Joystick(0);
-		rightJoystick = new Joystick(1);
     }
 	
 	public void disabledPeriodic() {

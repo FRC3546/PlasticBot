@@ -5,7 +5,8 @@ import org.usfirst.frc.team3546.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * Contains all of the necessary mechanics for converting joystick input in to
+ * mecanum movement.
  */
 public class MecanumDrive extends Command {
 
@@ -19,7 +20,10 @@ public class MecanumDrive extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.driveTrain.takeJoystickInputs(Robot.leftJoystick, Robot.rightJoystick);
+    	Robot.driveTrain.takeJoystickInputs(
+    			Robot.oi.leftJoystick, 
+    			Robot.oi.rightJoystick
+    			);
     }
 
     // Make this return true when this Command no longer needs to run execute()
