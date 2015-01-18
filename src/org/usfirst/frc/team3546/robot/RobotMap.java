@@ -13,6 +13,8 @@ public class RobotMap {
     public static int backLeftMotor = 2;
     public static int backRightMotor = 3;
     
+    public static String cameraName = "cam0";
+    
     // If you are using multiple modules, make sure to define both the port
     // number and the module. For example you with a rangefinder:
     // public static int rangefinderPort = 1;
