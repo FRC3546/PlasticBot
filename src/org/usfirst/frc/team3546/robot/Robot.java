@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
+import org.usfirst.frc.team3546.robot.commands.DashBoardCommunication;
 import org.usfirst.frc.team3546.robot.subsystems.DriveBase;
 
 /**
@@ -25,6 +26,10 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
 		oi = new OI();
 		driveTrain = new DriveBase();
+		
+		//Start communication with the SmartDashboard
+		DashBoardCommunication dash = new DashBoardCommunication();
+		dash.start();
     }
 	
 	public void disabledPeriodic() {

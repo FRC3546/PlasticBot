@@ -57,6 +57,16 @@ public class DriveBase extends Subsystem {
     			);
     }
     
+    public double[] getMotorOutputs(){
+    	double[] outputs = {
+    			frontLeft.get(),
+    	        frontRight.get(),
+    	        backLeft.get(),
+    	        backRight.get()
+    		};
+    	return outputs;
+    }
+    
     public void stop() {
         mainDrive.drive(0,0);
     }

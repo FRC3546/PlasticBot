@@ -3,6 +3,7 @@ package org.usfirst.frc.team3546.robot;
 import org.usfirst.frc.team3546.robot.commands.ToggleDrive;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.Joystick.AxisType;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
@@ -29,6 +30,18 @@ public class OI {
 		
 		toggleDriveOreintationButton = new JoystickButton(leftJoystick, 2);//2 is button #
 		toggleDriveOreintationButton.whenPressed(new ToggleDrive());
+	}
+	
+	public double[] getJoysickAxisData(){
+		double[] data = {
+				leftJoystick.getAxis(AxisType.kX),
+				leftJoystick.getAxis(AxisType.kY),
+				leftJoystick.getAxis(AxisType.kZ),
+				rightJoystick.getAxis(AxisType.kX),
+				rightJoystick.getAxis(AxisType.kY),
+				rightJoystick.getAxis(AxisType.kZ),
+		};
+		return data;
 	}
     // There are a few additional built in buttons you can use. Additionally,
     // by subclassing Button you can create custom triggers and bind those to
