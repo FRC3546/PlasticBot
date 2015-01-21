@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 import org.usfirst.frc.team3546.robot.subsystems.DriveBase;
+import org.usfirst.frc.team3546.robot.subsystems.Pneumatics;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -17,6 +18,7 @@ import org.usfirst.frc.team3546.robot.subsystems.DriveBase;
 public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static DriveBase driveTrain;
+	public static Pneumatics airSystem;
 	
     /**
      * This function is run when the robot is first started up and should be
@@ -25,6 +27,7 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
 		oi = new OI();
 		driveTrain = new DriveBase();
+		airSystem = new Pneumatics();
     }
 	
 	public void disabledPeriodic() {
