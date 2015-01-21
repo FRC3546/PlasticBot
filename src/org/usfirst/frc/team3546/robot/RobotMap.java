@@ -15,7 +15,7 @@ public class RobotMap {
     
     public static String cameraName = "cam0";
     
-    public static int jankyCylinder = 0;
+    public static int[] jankyCylinder = {4,5};
     
     // If you are using multiple modules, make sure to define both the port
     // number and the module. For example you with a rangefinder:
