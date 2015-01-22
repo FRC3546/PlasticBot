@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- *
+ * Communicates data to the smartdashboard
  */
 public class DashBoardCommunication extends Command {
 
@@ -32,6 +32,8 @@ public class DashBoardCommunication extends Command {
     	SmartDashboard.putNumber("RightJoystickXAxis", Robot.oi.getJoysickAxisData()[3]);
     	SmartDashboard.putNumber("RightJoystickYAxis", Robot.oi.getJoysickAxisData()[4]);
     	SmartDashboard.putNumber("RightJoystickZAxis", Robot.oi.getJoysickAxisData()[5]);
+    	
+    	SmartDashboard.putData("PDP", Robot.PD.getPDPSendable());
     }
 
     // Make this return true when this Command no longer needs to run execute()

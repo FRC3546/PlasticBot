@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 import org.usfirst.frc.team3546.robot.commands.DashBoardCommunication;
 import org.usfirst.frc.team3546.robot.subsystems.DriveBase;
+import org.usfirst.frc.team3546.robot.subsystems.PowerDistribution;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -18,6 +19,7 @@ import org.usfirst.frc.team3546.robot.subsystems.DriveBase;
 public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static DriveBase driveTrain;
+	public static PowerDistribution PD;
 	
     /**
      * This function is run when the robot is first started up and should be
@@ -26,6 +28,7 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
 		oi = new OI();
 		driveTrain = new DriveBase();
+		PD = new PowerDistribution();
 		
 		//Start communication with the SmartDashboard
 		DashBoardCommunication dash = new DashBoardCommunication();
