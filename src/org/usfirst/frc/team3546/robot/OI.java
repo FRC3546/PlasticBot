@@ -37,9 +37,11 @@ public class OI {
 				leftJoystick.getAxis(AxisType.kX),
 				leftJoystick.getAxis(AxisType.kY),
 				leftJoystick.getAxis(AxisType.kZ),
+				leftJoystick.getAxis(AxisType.kThrottle),
 				rightJoystick.getAxis(AxisType.kX),
 				rightJoystick.getAxis(AxisType.kY),
 				rightJoystick.getAxis(AxisType.kZ),
+				rightJoystick.getAxis(AxisType.kThrottle),
 		};
 		return data;
 	}

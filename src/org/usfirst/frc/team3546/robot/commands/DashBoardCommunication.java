@@ -21,6 +21,8 @@ public class DashBoardCommunication extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+//    	System.out.println("Sending dashboard data" + new java.util.Date());
+    	
     	SmartDashboard.putBoolean("DriveOreintation", Robot.driveTrain.getDrivingOreintation());
     	for (int i=0; i < 4; i++){ //Iterates over the motor outputs
     		SmartDashboard.putNumber("DriveMotor" + i, 
@@ -29,9 +31,11 @@ public class DashBoardCommunication extends Command {
     	SmartDashboard.putNumber("LeftJoystickXAxis", Robot.oi.getJoysickAxisData()[0]);
     	SmartDashboard.putNumber("LeftJoystickYAxis", Robot.oi.getJoysickAxisData()[1]);
     	SmartDashboard.putNumber("LeftJoystickZAxis", Robot.oi.getJoysickAxisData()[2]);
-    	SmartDashboard.putNumber("RightJoystickXAxis", Robot.oi.getJoysickAxisData()[3]);
-    	SmartDashboard.putNumber("RightJoystickYAxis", Robot.oi.getJoysickAxisData()[4]);
-    	SmartDashboard.putNumber("RightJoystickZAxis", Robot.oi.getJoysickAxisData()[5]);
+    	SmartDashboard.putNumber("LeftJoystickRotAxis", Robot.oi.getJoysickAxisData()[3]);
+    	SmartDashboard.putNumber("RightJoystickXAxis", Robot.oi.getJoysickAxisData()[4]);
+    	SmartDashboard.putNumber("RightJoystickYAxis", Robot.oi.getJoysickAxisData()[5]);
+    	SmartDashboard.putNumber("RightJoystickZAxis", Robot.oi.getJoysickAxisData()[6]);
+    	SmartDashboard.putNumber("RightJoystickRotAxis", Robot.oi.getJoysickAxisData()[7]);
     	
     	SmartDashboard.putData("PDP", Robot.PD.getPDPSendable());
     }

@@ -42,7 +42,7 @@ public class DriveBase extends Subsystem {
     public void takeJoystickInputs(Joystick left, Joystick right){
     	double horizontalDriveInput = left.getAxis(AxisType.kX);
     	double verticalDriveInput = left.getAxis(AxisType.kY);
-    	double rotationalDriveInput = right.getAxis(AxisType.kY);
+    	double rotationalDriveInput = left.getAxis(AxisType.kThrottle);
     	
     	if (drivingOreintation == REVERSEDDRIVE) {
     		horizontalDriveInput = -1 * horizontalDriveInput;
