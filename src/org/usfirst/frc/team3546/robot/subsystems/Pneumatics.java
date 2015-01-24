@@ -17,8 +17,8 @@ public class Pneumatics extends Subsystem {
 
     public void initDefaultCommand() {
         jankyCylinder = new DoubleSolenoid(
-        		RobotMap.jankyCylinder[0],
-        		RobotMap.jankyCylinder[1]
+        		RobotMap.jankyCylinderPCMPorts[0],
+        		RobotMap.jankyCylinderPCMPorts[1]
         		);
         setJankyCylinderPos(JANKYCYLINDERRETRACTED);
     }

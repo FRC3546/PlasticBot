@@ -1,9 +1,11 @@
 package org.usfirst.frc.team3546.robot;
 
 import org.usfirst.frc.team3546.robot.commands.ToggleDrive;
+import org.usfirst.frc.team3546.robot.commands.ToggleDrivingCentricity;
 import org.usfirst.frc.team3546.robot.commands.ToggleJankyCylinder;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.Joystick.AxisType;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
@@ -24,6 +26,7 @@ public class OI {
 	public Joystick rightJoystick;
 	public Button toggleDriveOreintationButton;
 	public Button toggleJankyCylinderButton;
+	public Button toggleDrivingCentricityButton;
 	
 	public OI(){
 		leftJoystick = new Joystick(0);
@@ -34,6 +37,23 @@ public class OI {
 		
 		toggleJankyCylinderButton = new JoystickButton(rightJoystick, 2);
 		toggleJankyCylinderButton.whenPressed(new ToggleJankyCylinder());
+		
+		toggleDrivingCentricityButton = new JoystickButton(leftJoystick, 4);
+		toggleDrivingCentricityButton.whenPressed(new ToggleDrivingCentricity());
+	}
+	
+	public double[] getJoysickAxisData(){
+		double[] data = {
+				leftJoystick.getAxis(AxisType.kX),
+				leftJoystick.getAxis(AxisType.kY),
+				leftJoystick.getAxis(AxisType.kZ),
+				leftJoystick.getAxis(AxisType.kThrottle),
+				rightJoystick.getAxis(AxisType.kX),
+				rightJoystick.getAxis(AxisType.kY),
+				rightJoystick.getAxis(AxisType.kZ),
+				rightJoystick.getAxis(AxisType.kThrottle),
+		};
+		return data;
 	}
     // There are a few additional built in buttons you can use. Additionally,
     // by subclassing Button you can create custom triggers and bind those to
