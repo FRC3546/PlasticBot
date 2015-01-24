@@ -3,6 +3,7 @@ package org.usfirst.frc.team3546.robot.subsystems;
 import org.usfirst.frc.team3546.robot.RobotMap;
 import org.usfirst.frc.team3546.robot.commands.MecanumDrive;
 
+import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Joystick.AxisType;
 import edu.wpi.first.wpilibj.RobotDrive;
@@ -16,6 +17,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class DriveBase extends Subsystem {
 	private Talon frontLeft, frontRight, backLeft, backRight;
 	private RobotDrive mainDrive;
+	private Gyro robotOrientationGyro;
 	private boolean drivingOreintation; // Stores the current orientation of the drive train. Normal/Reversed
 	public static boolean NORMALDRIVE = true; // Used to denote a reversed orientation
 	public static boolean REVERSEDDRIVE = false; // Used to denote a standard orientation
@@ -24,11 +26,14 @@ public class DriveBase extends Subsystem {
         setDefaultCommand(new MecanumDrive());
         drivingOreintation = NORMALDRIVE;
         
-        frontLeft = new Talon(RobotMap.frontLeftMotor);
-		frontRight = new Talon(RobotMap.frontRightMotor);
-		backLeft = new Talon(RobotMap.backLeftMotor);
-		backRight = new Talon(RobotMap.backRightMotor);
+        frontLeft = new Talon(RobotMap.frontLeftMotorPWM);
+		frontRight = new Talon(RobotMap.frontRightMotorPWM);
+		backLeft = new Talon(RobotMap.backLeftMotorPWM);
+		backRight = new Talon(RobotMap.backRightMotorPWM);
 		mainDrive = new RobotDrive(frontLeft, backLeft, frontRight, backRight);
+		
+		robotOrientationGyro = new Gyro(RobotMap.orientationGyroAnlgIn);
+		robotOrientationGyro.initGyro();
     }
     
     public void setDrivingOreintation(boolean newOreintation){
@@ -53,8 +58,12 @@ public class DriveBase extends Subsystem {
     			horizontalDriveInput, 
     			rotationalDriveInput,
     			verticalDriveInput,  
-    			0
+    			getRobotAngle()
     			);
+    }
+    
+    public double getRobotAngle() {
+    	return robotOrientationGyro.getAngle();
     }
     
     public void stop() {
