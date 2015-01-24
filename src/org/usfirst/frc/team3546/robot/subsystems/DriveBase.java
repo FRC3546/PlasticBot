@@ -30,12 +30,16 @@ public class DriveBase extends Subsystem {
     public void initDefaultCommand() {
         setDefaultCommand(new MecanumDrive());
         drivingOreintation = NORMALDRIVE;
+        drivingCentricity = ROBOTCENTRIC;
         
         frontLeft = new Talon(RobotMap.frontLeftMotorPWM);
 		frontRight = new Talon(RobotMap.frontRightMotorPWM);
 		backLeft = new Talon(RobotMap.backLeftMotorPWM);
 		backRight = new Talon(RobotMap.backRightMotorPWM);
-		mainDrive = new RobotDrive(frontLeft, backLeft, frontRight, backRight);
+		
+		
+		
+		mainDrive = new RobotDrive(frontLeft, backLeft, backRight, frontRight);
 		
 		robotOrientationGyro = new Gyro(RobotMap.orientationGyroAnlgIn);
 		robotOrientationGyro.initGyro();
@@ -60,7 +64,10 @@ public class DriveBase extends Subsystem {
     public void takeJoystickInputs(Joystick left, Joystick right){
     	double horizontalDriveInput = left.getAxis(AxisType.kX);
     	double verticalDriveInput = left.getAxis(AxisType.kY);
-    	double rotationalDriveInput = right.getAxis(AxisType.kY);
+    	double rotationalDriveInput = left.getAxis(AxisType.kThrottle);
+    	
+    	rotationalDriveInput = rotationalDriveInput * -1;
+    	horizontalDriveInput= horizontalDriveInput * -1;
     	
     	if (drivingOreintation == REVERSEDDRIVE) {
     		horizontalDriveInput = -1 * horizontalDriveInput;
