@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3546.robot;
 
 import org.usfirst.frc.team3546.robot.commands.ToggleDrive;
+import org.usfirst.frc.team3546.robot.commands.ToggleDrivingCentricity;
 import org.usfirst.frc.team3546.robot.commands.ToggleJankyCylinder;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -24,6 +25,7 @@ public class OI {
 	public Joystick rightJoystick;
 	public Button toggleDriveOreintationButton;
 	public Button toggleJankyCylinderButton;
+	public Button toggleDrivingCentricityButton;
 	
 	public OI(){
 		leftJoystick = new Joystick(0);
@@ -34,6 +36,9 @@ public class OI {
 		
 		toggleJankyCylinderButton = new JoystickButton(rightJoystick, 2);
 		toggleJankyCylinderButton.whenPressed(new ToggleJankyCylinder());
+		
+		toggleDrivingCentricityButton = new JoystickButton(leftJoystick, 4);
+		toggleDrivingCentricityButton.whenPressed(new ToggleDrivingCentricity());
 	}
     // There are a few additional built in buttons you can use. Additionally,
     // by subclassing Button you can create custom triggers and bind those to

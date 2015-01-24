@@ -18,9 +18,14 @@ public class DriveBase extends Subsystem {
 	private Talon frontLeft, frontRight, backLeft, backRight;
 	private RobotDrive mainDrive;
 	private Gyro robotOrientationGyro;
+	private boolean drivingCentricity;
 	private boolean drivingOreintation; // Stores the current orientation of the drive train. Normal/Reversed
+	
 	public static boolean NORMALDRIVE = true; // Used to denote a reversed orientation
 	public static boolean REVERSEDDRIVE = false; // Used to denote a standard orientation
+	
+	public static boolean FIELDCENTRIC = true; //Used to denote field centered driving
+	public static boolean ROBOTCENTRIC = false; //Used to denote robot centered driving
 
     public void initDefaultCommand() {
         setDefaultCommand(new MecanumDrive());
@@ -44,6 +49,14 @@ public class DriveBase extends Subsystem {
     	return drivingOreintation;
     }
     
+    public void setCentricity(boolean newCentricity){
+    	drivingCentricity = newCentricity;
+    }
+    
+    public boolean getCentricity(){
+    	return drivingCentricity;
+    }
+    
     public void takeJoystickInputs(Joystick left, Joystick right){
     	double horizontalDriveInput = left.getAxis(AxisType.kX);
     	double verticalDriveInput = left.getAxis(AxisType.kY);
@@ -63,7 +76,12 @@ public class DriveBase extends Subsystem {
     }
     
     public double getRobotAngle() {
-    	return robotOrientationGyro.getAngle();
+    	if (getCentricity() == FIELDCENTRIC) {
+    		return robotOrientationGyro.getAngle();
+    	} else {
+    		return 0; //Processed as if there's no gyro
+    	}
+    	
     }
     
     public void stop() {
