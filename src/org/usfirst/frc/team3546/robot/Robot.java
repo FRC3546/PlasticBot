@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import org.usfirst.frc.team3546.robot.commands.DashBoardCommunication;
 import org.usfirst.frc.team3546.robot.subsystems.DriveBase;
 import org.usfirst.frc.team3546.robot.subsystems.PowerDistribution;
+import org.usfirst.frc.team3546.robot.subsystems.Pneumatics;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -20,6 +21,7 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static DriveBase driveTrain;
 	public static PowerDistribution PD;
+	public static Pneumatics airSystem;
 	
     /**
      * This function is run when the robot is first started up and should be
@@ -36,6 +38,8 @@ public class Robot extends IterativeRobot {
 		DashBoardCommunication dash = new DashBoardCommunication();
 		dash.setRunWhenDisabled(true);
 		dash.start();
+
+		airSystem = new Pneumatics();
     }
 	
 	public void disabledPeriodic() {
