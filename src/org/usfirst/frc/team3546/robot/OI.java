@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3546.robot;
 
+import org.usfirst.frc.team3546.robot.commands.ResetGyro;
 import org.usfirst.frc.team3546.robot.commands.ToggleDrive;
 import org.usfirst.frc.team3546.robot.commands.ToggleDrivingCentricity;
 import org.usfirst.frc.team3546.robot.commands.ToggleJankyCylinder;
@@ -27,6 +28,7 @@ public class OI {
 	public Button toggleDriveOreintationButton;
 	public Button toggleJankyCylinderButton;
 	public Button toggleDrivingCentricityButton;
+	public Button resetGyroButton;
 	
 	public OI(){
 		leftJoystick = new Joystick(0);
@@ -40,6 +42,9 @@ public class OI {
 		
 		toggleDrivingCentricityButton = new JoystickButton(leftJoystick, 4);
 		toggleDrivingCentricityButton.whenPressed(new ToggleDrivingCentricity());
+		
+		toggleDrivingCentricityButton = new JoystickButton(leftJoystick, 5);
+		toggleDrivingCentricityButton.whenPressed(new ResetGyro());
 	}
 	
 	public double[] getJoysickAxisData(){
