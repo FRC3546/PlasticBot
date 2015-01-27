@@ -3,7 +3,7 @@ package org.usfirst.frc.team3546.robot;
 import org.usfirst.frc.team3546.robot.commands.ResetGyro;
 import org.usfirst.frc.team3546.robot.commands.ToggleDrive;
 import org.usfirst.frc.team3546.robot.commands.ToggleDrivingCentricity;
-import org.usfirst.frc.team3546.robot.commands.TogggleToteLiftCylinder;
+import org.usfirst.frc.team3546.robot.commands.ToggleToteLiftCylinder;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Joystick.AxisType;
@@ -38,7 +38,7 @@ public class OI {
 		toggleDriveOreintationButton.whenPressed(new ToggleDrive());
 		
 		toggleToteliftButton = new JoystickButton(rightJoystick, 2);
-		toggleToteliftButton.whenPressed(new TogggleToteLiftCylinder());
+		toggleToteliftButton.whenPressed(new ToggleToteLiftCylinder());
 		
 		toggleDrivingCentricityButton = new JoystickButton(leftJoystick, 4);
 		toggleDrivingCentricityButton.whenPressed(new ToggleDrivingCentricity());

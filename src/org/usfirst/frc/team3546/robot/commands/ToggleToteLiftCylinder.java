@@ -8,9 +8,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  * Toggles the position of the ToteLift cylinder
  */
-public class TogggleToteLiftCylinder extends Command {
+public class ToggleToteLiftCylinder extends Command {
 
-    public TogggleToteLiftCylinder() {
+    public ToggleToteLiftCylinder() {
 
     }
 
