@@ -37,14 +37,14 @@ public class OI {
 		toggleDriveOreintationButton = new JoystickButton(leftJoystick, 2);//2 is button #
 		toggleDriveOreintationButton.whenPressed(new ToggleDrive());
 		
-		toggleToteliftButton = new JoystickButton(rightJoystick, 2);
+		toggleToteliftButton = new JoystickButton(leftJoystick, 3);
 		toggleToteliftButton.whenPressed(new ToggleToteLiftCylinder());
 		
 		toggleDrivingCentricityButton = new JoystickButton(leftJoystick, 4);
 		toggleDrivingCentricityButton.whenPressed(new ToggleDrivingCentricity());
 		
-		toggleDrivingCentricityButton = new JoystickButton(leftJoystick, 5);
-		toggleDrivingCentricityButton.whenPressed(new ResetGyro());
+		resetGyroButton = new JoystickButton(leftJoystick, 5);
+		resetGyroButton.whenPressed(new ResetGyro());
 	}
 	
 	public double[] getJoysickAxisData(){
