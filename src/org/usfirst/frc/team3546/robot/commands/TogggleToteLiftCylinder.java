@@ -6,17 +6,17 @@ import org.usfirst.frc.team3546.robot.subsystems.DriveBase;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * Toggles the position of the janky cylinder
+ * Toggles the position of the ToteLift cylinder
  */
-public class ToggleJankyCylinder extends Command {
+public class TogggleToteLiftCylinder extends Command {
 
-    public ToggleJankyCylinder() {
+    public TogggleToteLiftCylinder() {
 
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.airSystem.toggleJankyCylinder();
+    	Robot.airSystem.toggleToteLiftCylinder();
     }
     
     // Make this return true when this Command no longer needs to run execute()

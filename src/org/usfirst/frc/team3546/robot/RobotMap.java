@@ -23,7 +23,7 @@ public class RobotMap {
     public static String cameraName = "cam0";
     
     //PCM
-    public static int[] jankyCylinderPCMPorts = {4,5};
+    public static int ToteLiftCylinderPCMPort = 0;
     
     // If you are using multiple modules, make sure to define both the port
     // number and the module. For example you with a rangefinder:
