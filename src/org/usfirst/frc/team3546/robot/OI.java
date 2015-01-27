@@ -2,7 +2,7 @@ package org.usfirst.frc.team3546.robot;
 
 import org.usfirst.frc.team3546.robot.commands.ToggleDrive;
 import org.usfirst.frc.team3546.robot.commands.ToggleDrivingCentricity;
-import org.usfirst.frc.team3546.robot.commands.ToggleJankyCylinder;
+import org.usfirst.frc.team3546.robot.commands.TogggleToteLiftCylinder;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Joystick.AxisType;
@@ -25,7 +25,7 @@ public class OI {
 	public Joystick leftJoystick;
 	public Joystick rightJoystick;
 	public Button toggleDriveOreintationButton;
-	public Button toggleJankyCylinderButton;
+	public Button toggleToteliftButton;
 	public Button toggleDrivingCentricityButton;
 	
 	public OI(){
@@ -35,8 +35,8 @@ public class OI {
 		toggleDriveOreintationButton = new JoystickButton(leftJoystick, 2);//2 is button #
 		toggleDriveOreintationButton.whenPressed(new ToggleDrive());
 		
-		toggleJankyCylinderButton = new JoystickButton(rightJoystick, 2);
-		toggleJankyCylinderButton.whenPressed(new ToggleJankyCylinder());
+		toggleToteliftButton = new JoystickButton(rightJoystick, 2);
+		toggleToteliftButton.whenPressed(new TogggleToteLiftCylinder());
 		
 		toggleDrivingCentricityButton = new JoystickButton(leftJoystick, 4);
 		toggleDrivingCentricityButton.whenPressed(new ToggleDrivingCentricity());
