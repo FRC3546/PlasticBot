@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.RobotDrive.MotorType;
 import edu.wpi.first.wpilibj.Sendable;
 import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -17,7 +18,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 
 public class DriveBase extends Subsystem {
-	private Talon frontLeft, frontRight, backLeft, backRight;
+	private Victor frontLeft, frontRight, backLeft, backRight;
 	private RobotDrive mainDrive;
 	private Gyro robotOrientationGyro;
 	private boolean drivingCentricity;
@@ -34,10 +35,10 @@ public class DriveBase extends Subsystem {
         drivingOreintation = NORMALDRIVE;
         drivingCentricity = ROBOTCENTRIC;
         
-        frontLeft = new Talon(RobotMap.frontLeftMotorPWM);
-		frontRight = new Talon(RobotMap.frontRightMotorPWM);
-		backLeft = new Talon(RobotMap.backLeftMotorPWM);
-		backRight = new Talon(RobotMap.backRightMotorPWM);
+        frontLeft = new Victor(RobotMap.frontLeftMotorPWM);
+		frontRight = new Victor(RobotMap.frontRightMotorPWM);
+		backLeft = new Victor(RobotMap.backLeftMotorPWM);
+		backRight = new Victor(RobotMap.backRightMotorPWM);
 
 		mainDrive = new RobotDrive(frontLeft, backLeft, frontRight, backRight);
 		mainDrive.setInvertedMotor(MotorType.kFrontRight, true);
