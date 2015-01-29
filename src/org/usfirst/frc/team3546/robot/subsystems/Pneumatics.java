@@ -11,42 +11,39 @@ import edu.wpi.first.wpilibj.Solenoid;
  * Contains the single cylinder present on plasticbot
  */
 public class Pneumatics extends Subsystem {
-    public static Value JANKYCYLINDEREXTENDED = Value.kForward;
-    public static Value JANKYCYLINDERRETRACTED = Value.kReverse;
-    DoubleSolenoid jankyCylinder;
+    public static boolean TOTELIFTCYLINDEREXTENDED = true;
+    public static boolean TOTELIFTCYLINDERRETRACTED = false;
+    Solenoid ToteLiftCylinder;
 
     public void initDefaultCommand() {
-        jankyCylinder = new DoubleSolenoid(
-        		RobotMap.jankyCylinderPCMPorts[0],
-        		RobotMap.jankyCylinderPCMPorts[1]
-        		);
-        setJankyCylinderPos(JANKYCYLINDERRETRACTED);
+        ToteLiftCylinder = new Solenoid(RobotMap.ToteLiftCylinderPCMPort);
+        setToteLiftCylinderPos(TOTELIFTCYLINDERRETRACTED);
     }
     
     /**
-     * Get the position of the janky cylinder
-     * @return the position of the janky cylinder
+     * Get the position of the ToteLift cylinder
+     * @return the position of the ToteLift cylinder
      */
-    public Value getJankyCylinderPos(){
-    	return jankyCylinder.get();
+    public boolean getToteLiftCylinderPos(){
+    	return ToteLiftCylinder.get();
     }
     
     /**
-     * Sets the position of the janky cylinder
+     * Sets the position of the ToteLift cylinder
      * @param position The new position of the cylinder
      */
-    public void setJankyCylinderPos(Value position){
-    	jankyCylinder.set(position);
+    public void setToteLiftCylinderPos(boolean position){
+    	ToteLiftCylinder.set(position);
     }
     
     /**
-     * Toggles the position of the janky cylinder
+     * Toggles the position of the ToteLiift cylinder
      */
-    public void toggleJankyCylinder(){
-    	if (getJankyCylinderPos() == JANKYCYLINDEREXTENDED){
-    		setJankyCylinderPos(JANKYCYLINDERRETRACTED);
-    	} else if (getJankyCylinderPos() == JANKYCYLINDERRETRACTED){
-    		setJankyCylinderPos(JANKYCYLINDEREXTENDED);
+    public void toggleToteLiftCylinder(){
+    	if (getToteLiftCylinderPos() == TOTELIFTCYLINDEREXTENDED){
+    		setToteLiftCylinderPos(TOTELIFTCYLINDERRETRACTED);
+    	} else if (getToteLiftCylinderPos() == TOTELIFTCYLINDERRETRACTED){
+    		setToteLiftCylinderPos(TOTELIFTCYLINDEREXTENDED);
     	}
     }
 }

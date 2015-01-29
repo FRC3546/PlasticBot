@@ -7,7 +7,10 @@ import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Joystick.AxisType;
 import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.RobotDrive.MotorType;
+import edu.wpi.first.wpilibj.Sendable;
 import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -15,7 +18,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 
 public class DriveBase extends Subsystem {
-	private Talon frontLeft, frontRight, backLeft, backRight;
+	private Victor frontLeft, frontRight, backLeft, backRight;
 	private RobotDrive mainDrive;
 	private Gyro robotOrientationGyro;
 	private boolean drivingCentricity;
@@ -32,14 +35,14 @@ public class DriveBase extends Subsystem {
         drivingOreintation = NORMALDRIVE;
         drivingCentricity = ROBOTCENTRIC;
         
-        frontLeft = new Talon(RobotMap.frontLeftMotorPWM);
-		frontRight = new Talon(RobotMap.frontRightMotorPWM);
-		backLeft = new Talon(RobotMap.backLeftMotorPWM);
-		backRight = new Talon(RobotMap.backRightMotorPWM);
-		
-		
-		
-		mainDrive = new RobotDrive(frontLeft, backLeft, backRight, frontRight);
+        frontLeft = new Victor(RobotMap.frontLeftMotorPWM);
+		frontRight = new Victor(RobotMap.frontRightMotorPWM);
+		backLeft = new Victor(RobotMap.backLeftMotorPWM);
+		backRight = new Victor(RobotMap.backRightMotorPWM);
+
+		mainDrive = new RobotDrive(frontLeft, backLeft, frontRight, backRight);
+		mainDrive.setInvertedMotor(MotorType.kFrontRight, true);
+		mainDrive.setInvertedMotor(MotorType.kRearRight, true);
 		
 		robotOrientationGyro = new Gyro(RobotMap.orientationGyroAnlgIn);
 		robotOrientationGyro.initGyro();
@@ -65,20 +68,24 @@ public class DriveBase extends Subsystem {
     	double horizontalDriveInput = left.getAxis(AxisType.kX);
     	double verticalDriveInput = left.getAxis(AxisType.kY);
     	double rotationalDriveInput = left.getAxis(AxisType.kThrottle);
-    
-    	rotationalDriveInput = rotationalDriveInput * -1;
-    	horizontalDriveInput= horizontalDriveInput * -1;
     	
     	if (drivingOreintation == REVERSEDDRIVE) {
     		horizontalDriveInput = -1 * horizontalDriveInput;
     		verticalDriveInput = -1 * verticalDriveInput;
     	}
     	
+    	double robotAngle;
+    	if (getCentricity() == FIELDCENTRIC) {
+    		robotAngle = getRobotAngle();
+    	} else {
+    		robotAngle = 0; //Processed as if there's no gyro
+    	}
+    	
     	mainDrive.mecanumDrive_Cartesian(
     			horizontalDriveInput, 
-    			rotationalDriveInput,
     			verticalDriveInput,  
-    			getRobotAngle()
+    			rotationalDriveInput, 
+    			robotAngle
     			);
     }
     
@@ -94,12 +101,15 @@ public class DriveBase extends Subsystem {
     }
     
     public double getRobotAngle() {
-    	if (getCentricity() == FIELDCENTRIC) {
-    		return robotOrientationGyro.getAngle();
-    	} else {
-    		return 0; //Processed as if there's no gyro
-    	}
-
+    	return robotOrientationGyro.getAngle();
+    }
+    
+    public Sendable getGyroSendable() {
+    	return robotOrientationGyro;
+    }
+    
+    public void resetGyro(){
+    	robotOrientationGyro.initGyro();
     }
     
     public void stop() {

@@ -1,22 +1,21 @@
 package org.usfirst.frc.team3546.robot.commands;
 
 import org.usfirst.frc.team3546.robot.Robot;
-import org.usfirst.frc.team3546.robot.subsystems.DriveBase;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * Toggles the position of the janky cylinder
+ *
  */
-public class ToggleJankyCylinder extends Command {
+public class ResetGyro extends Command {
 
-    public ToggleJankyCylinder() {
+    public ResetGyro() {
 
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.airSystem.toggleJankyCylinder();
+    	Robot.driveTrain.resetGyro();
     }
     
     // Make this return true when this Command no longer needs to run execute()
