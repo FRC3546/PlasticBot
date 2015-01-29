@@ -34,10 +34,10 @@ public class OI {
 		leftJoystick = new Joystick(0);
 		rightJoystick = new Joystick(1);
 		
-		toggleDriveOreintationButton = new JoystickButton(leftJoystick, 2);//2 is button #
+		toggleDriveOreintationButton = new JoystickButton(leftJoystick, 3);//3 is button #
 		toggleDriveOreintationButton.whenPressed(new ToggleDrive());
 		
-		toggleToteliftButton = new JoystickButton(leftJoystick, 3);
+		toggleToteliftButton = new JoystickButton(leftJoystick, 2);
 		toggleToteliftButton.whenPressed(new ToggleToteLiftCylinder());
 		
 		toggleDrivingCentricityButton = new JoystickButton(leftJoystick, 4);
