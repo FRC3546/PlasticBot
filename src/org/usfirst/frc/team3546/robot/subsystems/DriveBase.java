@@ -3,6 +3,7 @@ package org.usfirst.frc.team3546.robot.subsystems;
 import org.usfirst.frc.team3546.robot.RobotMap;
 import org.usfirst.frc.team3546.robot.commands.MecanumDrive;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Joystick.AxisType;
@@ -23,6 +24,7 @@ public class DriveBase extends Subsystem {
 	private Gyro robotOrientationGyro;
 	private boolean drivingCentricity;
 	private boolean drivingOreintation; // Stores the current orientation of the drive train. Normal/Reversed
+	private Encoder encoder;
 	
 	public static boolean NORMALDRIVE = true; // Used to denote a reversed orientation
 	public static boolean REVERSEDDRIVE = false; // Used to denote a standard orientation
@@ -46,6 +48,9 @@ public class DriveBase extends Subsystem {
 		
 		robotOrientationGyro = new Gyro(RobotMap.orientationGyroAnlgIn);
 		robotOrientationGyro.initGyro();
+		
+		encoder = new Encoder(RobotMap.encoderLocation1, RobotMap.encoderLocation2, false, Encoder.EncodingType.k4X);
+		encoder.reset();
     }
     
     public void setDrivingOreintation(boolean newOreintation){
@@ -67,7 +72,18 @@ public class DriveBase extends Subsystem {
     public void takeJoystickInputs(Joystick left, Joystick right){
     	double horizontalDriveInput = left.getAxis(AxisType.kX);
     	double verticalDriveInput = left.getAxis(AxisType.kY);
-    	double rotationalDriveInput = left.getAxis(AxisType.kThrottle);
+    	
+    	double leftTriggerInput = left.getAxis(AxisType.kTwist);
+    	double rightTriggerInput = left.getAxis(AxisType.kThrottle);
+    	
+    	double rotationalDriveInput = 0;
+//    	if (leftTriggerInput > .05 && !(rightTriggerInput > .05)){
+//    		rotationalDriveInput = -leftTriggerInput;
+//    	} else if (rightTriggerInput > .05 && !(leftTriggerInput > .05)){
+//    		rotationalDriveInput = rightTriggerInput;
+//    	} else {
+//    		rotationalDriveInput = 0;
+//    	}
     	
     	if (drivingOreintation == REVERSEDDRIVE) {
     		horizontalDriveInput = -1 * horizontalDriveInput;
@@ -110,6 +126,14 @@ public class DriveBase extends Subsystem {
     
     public void resetGyro(){
     	robotOrientationGyro.initGyro();
+    }
+    
+    public double getEncoder(){
+    	return encoder.get();
+    }
+    
+    public void resetEncoder(){
+    	encoder.reset();
     }
     
     public void stop() {

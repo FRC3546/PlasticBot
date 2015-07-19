@@ -39,6 +39,8 @@ public class DashBoardCommunication extends Command {
     	
     	SmartDashboard.putNumber("Gyro", Robot.driveTrain.getRobotAngle());
     	SmartDashboard.putData("PDP", Robot.PD.getPDPSendable());
+    	
+    	SmartDashboard.putNumber("Encoder", Robot.driveTrain.getEncoder());
     }
 
     // Make this return true when this Command no longer needs to run execute()

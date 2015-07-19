@@ -15,7 +15,6 @@ public class RobotMap {
     public static int backLeftMotorPWM = 2;
     public static int backRightMotorPWM = 3;
     
-    
     //Analog in
     public static int orientationGyroAnlgIn = 0;
     
@@ -24,6 +23,10 @@ public class RobotMap {
     
     //PCM
     public static int ToteLiftCylinderPCMPort = 0;
+    
+    //Digital in
+    public static int encoderLocation1 = 0;
+    public static int encoderLocation2 = 1;
     
     // If you are using multiple modules, make sure to define both the port
     // number and the module. For example you with a rangefinder:
